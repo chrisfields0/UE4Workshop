@@ -6,6 +6,7 @@
 #include "EntityRegistry.h"
 #include "GameFramework/Character.h"
 #include "Teams/TPSTeams.h"
+#include "ColorComponent.h"
 #include "TPSCharacter.generated.h"
 
 UCLASS(SpatialType, config = Game)
@@ -20,11 +21,16 @@ public:
 
 	virtual void Tick(float DeltaSeconds) override;
 
+	virtual void OnAuthorityGained() override;
+
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	UPROPERTY(BlueprintReadWrite)
+	UColorComponent* ColorComponent;
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)

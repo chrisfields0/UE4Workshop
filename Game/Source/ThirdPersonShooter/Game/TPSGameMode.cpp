@@ -25,6 +25,8 @@ ATPSGameMode::ATPSGameMode()
 		UE_LOG(LogTPS, Error, TEXT("[TPSGameMode]: Couldn't find default Pawn blueprint class: %s"), DefaultPawnBPPath);
 	}
 
+	ObjectColor = FColor::MakeRandomColor();
+
 	HUDClass = ATPSHUD::StaticClass();
 
 	const TCHAR* DefaultPlayerControllerBPPath = TEXT("/Game/Characters/TPSPlayerController_BP");
