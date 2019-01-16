@@ -31,4 +31,7 @@ public:
 
 	void NotifyPlayerKilled(const FString& PlayerName, ETPSTeam PlayerTeam, const FString& KillerName, ETPSTeam KillerTeam);
 
+	UPROPERTY(BlueprintReadOnly)
+	FColor ObjectColor;
+
 };
