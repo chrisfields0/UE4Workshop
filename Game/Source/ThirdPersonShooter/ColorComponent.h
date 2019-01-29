@@ -26,17 +26,17 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	UPROPERTY(BlueprintAssignable)
-		FOnUpdatedMeshColor OnUpdatedMeshColor;
-
 	UFUNCTION(Server, WithValidation, Reliable, BlueprintCallable)
-		void Server_UpdateColorComponent();
+	void Server_UpdateColorComponent();
 
-	UFUNCTION(Client, Reliable)
-		void Client_UpdateColorComponent(FColor InColor);
+	UFUNCTION()
+	void OnRep_CurrentMeshColor();
 
-	UPROPERTY()
-		FColor CurrentMeshColor;
+	UPROPERTY(BlueprintAssignable)
+	FOnUpdatedMeshColor OnUpdatedMeshColor;
+
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing=OnRep_CurrentMeshColor)
+	FColor CurrentMeshColor;
 
 	
 };
