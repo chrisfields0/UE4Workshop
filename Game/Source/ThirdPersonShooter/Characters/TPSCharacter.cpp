@@ -520,9 +520,14 @@ FString ATPSCharacter::GetPlayerName() const
 
 float ATPSCharacter::TakeDamage(float Damage, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
+	TakeGunDamageCrossServer(Damage, DamageEvent, EventInstigator, DamageCauser);
+	return Damage;
+}
+void ATPSCharacter::TakeGunDamageCrossServer_Implementation(float Damage, const struct FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
 	if (!HasAuthority())
 	{
-		return 0.0f;
+		return;
 	}
 
 	const ATPSCharacter* Killer = nullptr;
@@ -537,7 +542,7 @@ float ATPSCharacter::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 			if (Team != ETPSTeam::Team_None    // "Team_None" is not actually a team, and "teamless" should be able to damage one another
 				&& DamageDealer->GetTeam() == Team)
 			{
-				return 0.0f;
+				return;
 			}
 			Killer = DamageDealer;
 		}
@@ -550,8 +555,6 @@ float ATPSCharacter::TakeDamage(float Damage, const FDamageEvent& DamageEvent, A
 	{
 		Die(Killer);
 	}
-
-	return Damage;
 }
 
 bool ATPSCharacter::IsSprinting()
