@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EntityRegistry.h"
+////#include "EntityRegistry.h"
 #include "GameFramework/Character.h"
 #include "Teams/TPSTeams.h"
 #include "TPSCharacter.generated.h"
@@ -68,6 +68,9 @@ public:
 
 	// Returns the player's name, as specified on login.
 	FString GetPlayerName() const;
+
+	UFUNCTION(CrossServer, Reliable)
+	void TakeGunDamageCrossServer(float Damage, const struct FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser);
 
 	float TakeDamage(float Damage, const struct FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 

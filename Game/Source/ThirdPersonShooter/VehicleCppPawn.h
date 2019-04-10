@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EntityRegistry.h"
+//#include "EntityRegistry.h"
 #include "WheeledVehicle.h"
 #include "VehicleCppPawn.generated.h"
 
