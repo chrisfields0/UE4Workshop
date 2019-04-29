@@ -34,8 +34,8 @@
       {
           "layer": "UnrealWorker",
           "rectangle_grid": {
-              "cols": 2,
-              "rows": 1
+            "cols": 2,
+            "rows": 1
           },
           "options": {
             "manual_worker_connection_only": true
