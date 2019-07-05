@@ -33,7 +33,7 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
-
+	virtual void OnRep_ReplicatedBasedMovement() override;
 protected:
 
 	/** Called for forwards/backward input */
@@ -83,7 +83,7 @@ public:
 	{
 		return MaxHealth;
 	}
-
+	virtual void OnRep_ReplicatedMovement() override;
 	// [server + client] Returns true if the character is currently sprinting.
 	UFUNCTION(BlueprintPure, Category = "Movement")
 	bool IsSprinting();

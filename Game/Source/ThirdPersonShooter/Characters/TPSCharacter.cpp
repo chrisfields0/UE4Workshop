@@ -510,6 +510,16 @@ FString ATPSCharacter::GetPlayerName() const
 	}
 	return FString("UNKNOWN");
 }
+void ATPSCharacter::OnRep_ReplicatedBasedMovement()
+{
+	Super::OnRep_ReplicatedBasedMovement();
+	//UE_LOG(LogTemp, Error, TEXT("%d: OnRep_ReplicatedBasedMovement"), GPlayInEditorID);
+}
+void ATPSCharacter::OnRep_ReplicatedMovement()
+{
+	Super::OnRep_ReplicatedMovement();
+	//UE_LOG(LogTemp, Error, TEXT("%d: OnRep_ReplicatedMovement"), GPlayInEditorID);
+}
 
 float ATPSCharacter::TakeDamage(float Damage, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
